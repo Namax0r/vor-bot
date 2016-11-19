@@ -19,7 +19,14 @@ def on_ready():
     print(bot.user.id)
     print('------')
 
-commands_help = {"add": "Adds two numbers together", "joined": "Displays information about user"}
+commands_help = {
+    "commands": "Display available commands",
+    "add": "Adds two numbers together",
+    "choose": "Chooses random item from given list of choices",
+    "repeat": "Repeats a message given numbers of times",
+    "joined": "Displays information when a member joined",
+    "cool": "Says if someone is cool"
+    }
 
 @bot.command()
 @asyncio.coroutine
