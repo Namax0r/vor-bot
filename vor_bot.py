@@ -84,7 +84,7 @@ def flip():
     else:
         yield from bot.say('Tails')
 
-# Flips a coin.
+# Rock, paper, scissor.
 @bot.command()
 @asyncio.coroutine
 def rps():
@@ -96,6 +96,19 @@ def rps():
     else:
         yield from bot.say('Scissor')
 
+# Generates random number between 0 and given number.
+@bot.command()
+@asyncio.coroutine
+def randnum(number : int):
+    result = randint(0, number)
+    yield from bot.say(result)
+
+
+# Checks if bot is online
+@bot.command()
+@asyncio.coroutine
+def isboton():
+    yield from bot.say("Beep, beep, boop, I'm online. Ready for your commands!")
 
 '''@cool.command(name='bot')
 @asyncio.coroutine
