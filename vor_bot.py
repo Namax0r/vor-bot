@@ -25,7 +25,11 @@ commands_help = {
     "choose": "Chooses random item from given list of choices",
     "repeat": "Repeats a message given numbers of times",
     "joined": "Displays information when a member joined",
-    "cool": "Says if someone is cool"
+    "flip": "Flips a coin"
+    "rps": "Rock, paper, scissors"
+    "rng": "Random number generator"
+    "isboton": "Checks if bot is online"
+    "reverse": "Reverse a string"
     }
 
 @bot.command()
@@ -99,7 +103,7 @@ def rps():
 # Generates random number between 0 and given number.
 @bot.command()
 @asyncio.coroutine
-def randnum(number : int):
+def rng(number : int):
     result = randint(0, number)
     yield from bot.say(result)
 
@@ -110,10 +114,11 @@ def randnum(number : int):
 def isboton():
     yield from bot.say("Beep, beep, boop, I'm online. Ready for your commands!")
 
-'''@cool.command(name='bot')
+# Reverse input
+@bot.command()
 @asyncio.coroutine
-def _bot():
-    """Is the bot cool?"""
-    yield from bot.say('Yes, the bot is cool.')'''
+def reverse(string : str):
+    reversed_str = ''.join(reversed(string))
+    yield from bot.say(reversed_str)
 
 bot.run('token')
