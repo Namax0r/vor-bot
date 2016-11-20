@@ -74,6 +74,29 @@ def cool(ctx):
     if ctx.invoked_subcommand is None:
         yield from bot.say('No, {0.subcommand_passed} is not cool'.format(ctx))
 
+# Flips a coin.
+@bot.command()
+@asyncio.coroutine
+def flip():
+    result = randint(0,1)
+    if result == 0:
+        yield from bot.say('Heads')
+    else:
+        yield from bot.say('Tails')
+
+# Flips a coin.
+@bot.command()
+@asyncio.coroutine
+def rps():
+    result = randint(0,2)
+    if result == 0:
+        yield from bot.say('Rock')
+    elif result == 1:
+        yield from bot.say('Paper')
+    else:
+        yield from bot.say('Scissor')
+
+
 '''@cool.command(name='bot')
 @asyncio.coroutine
 def _bot():
