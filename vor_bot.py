@@ -25,10 +25,10 @@ commands_help = {
     "choose": "Chooses random item from given list of choices",
     "repeat": "Repeats a message given numbers of times",
     "joined": "Displays information when a member joined",
-    "flip": "Flips a coin"
-    "rps": "Rock, paper, scissors"
-    "rng": "Random number generator"
-    "isboton": "Checks if bot is online"
+    "flip": "Flips a coin",
+    "rps": "Rock, paper, scissors",
+    "rng": "Random number generator",
+    "isboton": "Checks if bot is online",
     "reverse": "Reverse a string"
     }
 
