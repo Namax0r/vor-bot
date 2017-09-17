@@ -15,11 +15,9 @@ txt = open("token","r")
 #Python adds new line when reading from a file. Strip it with strip().
 bot_token = txt.read().strip()
 #read the json file
-with open('database.json') as json_file:
+with open('database.json', 'r') as json_file:
     database = json.load(json_file)
-
-pprint(database)
-
+    json_file.close()
 
 # create bot
 bot = commands.Bot(command_prefix='!', description=description)
@@ -44,11 +42,11 @@ commands_help = {
     "isboton": "Checks if bot is online",
     "reverse": "Reverse a string"
     }
-
+#display all the commands available
 @bot.command()
 @asyncio.coroutine
 def commands():
-    #display all the commands available
+
     for key, value in commands_help.items():
         yield from bot.say('{0}{1} = {2}{3}'.format('```', key, value, '```'))
 
@@ -56,12 +54,14 @@ def commands():
 @bot.command()
 @asyncio.coroutine
 def add(left : int, right : int):
+
     yield from bot.say(left + right)
 
 # Rolls a basic 1-6 dice.
 @bot.command()
 @asyncio.coroutine
 def roll():
+
     result = randint(1,6)
     yield from bot.say(result)
 
@@ -69,12 +69,14 @@ def roll():
 @bot.command()
 @asyncio.coroutine
 def choose(*choices : str):
+
     yield from bot.say(random.choice(choices))
 
 # Repeats a message given numbers of times
 @bot.command()
 @asyncio.coroutine
 def repeat(times : int, content='repeating...'):
+
     for i in range(times):
         yield from bot.say(content)
 
@@ -82,12 +84,14 @@ def repeat(times : int, content='repeating...'):
 @bot.command()
 @asyncio.coroutine
 def joined(member : discord.Member):
+
     yield from bot.say('{0.name} joined in {0.joined_at}'.format(member))
 
 # Says if user is cool
 @bot.group(pass_context=True)
 @asyncio.coroutine
 def cool(ctx):
+
     if ctx.invoked_subcommand is None:
         yield from bot.say('No, {0.subcommand_passed} is not cool'.format(ctx))
 
@@ -95,6 +99,7 @@ def cool(ctx):
 @bot.command()
 @asyncio.coroutine
 def flip():
+
     result = randint(0,1)
     if result == 0:
         yield from bot.say('Heads')
@@ -105,6 +110,7 @@ def flip():
 @bot.command()
 @asyncio.coroutine
 def rps():
+
     result = randint(0,2)
     if result == 0:
         yield from bot.say('Rock')
@@ -117,6 +123,7 @@ def rps():
 @bot.command()
 @asyncio.coroutine
 def rng(number : int):
+
     result = randint(0, number)
     yield from bot.say(result)
 
@@ -125,14 +132,30 @@ def rng(number : int):
 @bot.command()
 @asyncio.coroutine
 def isboton():
+
     yield from bot.say("Beep, beep, boop, I'm online. Ready for your commands!")
 
 # Reverse input
 @bot.command()
 @asyncio.coroutine
 def reverse(string : str):
+
     reversed_str = ''.join(reversed(string))
     yield from bot.say(reversed_str)
 
+'''
+Database based commands
+'''
+
+# Assigns artificial points to a user
+@bot.command()
+@asyncio.coroutine
+def gpoints(user, points):
+
+    with open("database.json", "w+") as jsonFile:
+        database['users'][user]["points"] += int(points)
+        jsonFile.write(json.dumps(database))
+        jsonFile.close()
+
 #Start the bot
-#bot.run(bot_token)
+bot.run(bot_token)
