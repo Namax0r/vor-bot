@@ -1,15 +1,15 @@
 {
  "users":[
            {
-            "id": "123456789",
-            "name": "User one",
-            "joined": "placeholder",
-            "points": 500
+            "id": "123",
+            "name": "Jonny",
+            "joined": "",
+            "points": 0
            },
            {
-            "id": "987654321",
-            "name": "User two",
-            "joined": "placeholder",
+            "id": "456",
+            "name": "Katie",
+            "joined": "",
             "points": 500
            }
          ]
