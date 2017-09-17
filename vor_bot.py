@@ -4,6 +4,8 @@ import random
 # randint is needed to generate random numbers.
 from random import randint
 import asyncio
+import json
+from pprint import pprint
 
 # set description
 description = '''Discord vor-bot based on https://github.com/Rapptz/discord.py'''
@@ -12,7 +14,12 @@ description = '''Discord vor-bot based on https://github.com/Rapptz/discord.py''
 txt = open("token","r")
 #Python adds new line when reading from a file. Strip it with strip().
 bot_token = txt.read().strip()
-print(bot_token)
+#read the json file
+with open('database.json') as json_file:
+    database = json.load(json_file)
+
+pprint(database)
+
 
 # create bot
 bot = commands.Bot(command_prefix='!', description=description)
@@ -128,4 +135,4 @@ def reverse(string : str):
     yield from bot.say(reversed_str)
 
 #Start the bot
-bot.run(bot_token)
+#bot.run(bot_token)
