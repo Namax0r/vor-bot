@@ -1,17 +1,1 @@
-{
- "users":[
-           {
-            "id": "123",
-            "name": "Jonny",
-            "joined": "",
-            "points": 0
-           },
-           {
-            "id": "456",
-            "name": "Katie",
-            "joined": "",
-            "points": 500
-           }
-         ]
-}
-
+{"users": {"Katie": {"id": "456", "points": 0, "joined": ""}, "Jonny": {"id": "123", "points": 0, "joined": ""}}}
