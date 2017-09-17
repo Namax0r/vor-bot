@@ -7,8 +7,14 @@ import asyncio
 
 # set description
 description = '''Discord vor-bot based on https://github.com/Rapptz/discord.py'''
-# create bot
 
+#Keep token secret by reading it from a token file.
+txt = open("token","r")
+#Python adds new line when reading from a file. Strip it with splitlines().
+bot_token = txt.read().splitlines()
+
+
+# create bot
 bot = commands.Bot(command_prefix='!', description=description)
 
 @bot.event
@@ -121,4 +127,5 @@ def reverse(string : str):
     reversed_str = ''.join(reversed(string))
     yield from bot.say(reversed_str)
 
-bot.run('token')
+#Start the bot
+bot.run(bot_token[0])
