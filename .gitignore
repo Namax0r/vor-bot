@@ -247,3 +247,6 @@ ModelManifest.xml
 # Project specific
 Resistor-calc.pyproj
 *.pyproj
+.idea
+#ignore discord bot api token file
+token
