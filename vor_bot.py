@@ -10,9 +10,9 @@ description = '''Discord vor-bot based on https://github.com/Rapptz/discord.py''
 
 #Keep token secret by reading it from a token file.
 txt = open("token","r")
-#Python adds new line when reading from a file. Strip it with splitlines().
-bot_token = txt.read().splitlines()
-
+#Python adds new line when reading from a file. Strip it with strip().
+bot_token = txt.read().strip()
+print(bot_token)
 
 # create bot
 bot = commands.Bot(command_prefix='!', description=description)
@@ -128,4 +128,4 @@ def reverse(string : str):
     yield from bot.say(reversed_str)
 
 #Start the bot
-bot.run(bot_token[0])
+bot.run(bot_token)
