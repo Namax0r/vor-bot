@@ -5,9 +5,18 @@
 Vor-bot is a bot for [Discord](https://discordapp.com/). It's written in Python with the help of [Python API wrapper](https://github.com/Rapptz/discord.py).
 
 ## Usage
-The bot is still under development and it's not ready to be released to public. You can grab the source if you feel like using the code for your own project.
+The bot is still under development and many features are not coded yet. You can grab the source if you feel like using the code for your own project.
 
 ## Changelog
+
+```
+18-Sept-2017
+```
+>
++ Added additional points manipulating commands.
++ Added first gambling game.
+
+
 ```
 17-Sept-2017
 ```
@@ -21,8 +30,8 @@ The bot is still under development and it's not ready to be released to public. 
 
 - [x] Read the bot token from a file
 - [x] Add database functionality
-- [ ] Release to public
-- [ ] Add support for artificial points i.e. gambling, trade etc.
+- [ ] 1.0 Release
+- [x] Add support for artificial points i.e. gambling, trade etc.
 - [ ] Add support to linking images
 - [ ] Add support to linking gifs
 - [ ] Role support
