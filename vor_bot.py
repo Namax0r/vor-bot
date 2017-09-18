@@ -15,10 +15,15 @@ txt = open("token","r")
 #Python adds new line when reading from a file. Strip it with strip().
 bot_token = txt.read().strip()
 #read the json file
-with open('database.json', 'r') as json_file:
-    database = json.load(json_file)
-    json_file.close()
 
+def read_db(file):
+    with open(file, 'r') as json_file:
+        db = json.load(json_file)
+        json_file.close()
+        return db
+
+database = read_db('database.json')
+pprint(database)
 # create bot
 bot = commands.Bot(command_prefix='!', description=description)
 
@@ -156,6 +161,24 @@ def gpoints(user, points):
         database['users'][user]["points"] += int(points)
         jsonFile.write(json.dumps(database))
         jsonFile.close()
+    yield from bot.say('Added {0} points to {1}'.format(points, user))
+# Removes points
+@bot.command()
+@asyncio.coroutine
+def rpoints(user, points):
 
+    with open("database.json", "w+") as jsonFile:
+        database['users'][user]["points"] -= int(points)
+        jsonFile.write(json.dumps(database))
+        jsonFile.close()
+    yield from bot.say('Removed {0} points from {1}'.format(points, user))
+# Check leaderboards
+@bot.command()
+@asyncio.coroutine
+def leaderboard():
+    database = read_db('database.json')
+    for key,val in database['users'].items():
+        #print(key, "=>", val['points'])
+        yield from bot.say('{0} => {1}'.format(key, val['points']))
 #Start the bot
 bot.run(bot_token)
