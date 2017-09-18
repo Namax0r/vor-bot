@@ -69,7 +69,6 @@ def roll():
 
     result = randint(1,6)
     yield from bot.say(result)
-
 # Chooses random item from given list of choices
 @bot.command()
 @asyncio.coroutine
@@ -180,5 +179,29 @@ def leaderboard():
     for key,val in database['users'].items():
         #print(key, "=>", val['points'])
         yield from bot.say('{0} => {1}'.format(key, val['points']))
+
+'''
+Gamble games
+'''
+# Reverse input
+@bot.command()
+@asyncio.coroutine
+def dicegamble(user : str, number : int, stake : int):
+    result = randint(1,6)
+    if result == number:
+        with open("database.json", "w+") as jsonFile:
+            database['users'][user]["points"] += (int(stake) * 2)
+            jsonFile.write(json.dumps(database))
+            jsonFile.close()
+        yield from bot.say('You won {0} points !'.format(int(stake) * 2))
+    else:
+        with open("database.json", "w+") as jsonFile:
+            database['users'][user]["points"] -= (int(stake) * 2)
+            jsonFile.write(json.dumps(database))
+            jsonFile.close()
+        print('My number is {0} and your number is {1}'.format(result, number))
+        yield from bot.say('You lost {0} points ! The number was {1}'.format(int(stake) * 2, result))
+
+
 #Start the bot
 bot.run(bot_token)
